@@ -1,6 +1,22 @@
+const moment = require('moment');
 module.exports = {
-  title: 'Hello1 VuePress1',
-  description: 'Just playing around',
+  // title: 'Hello1 VuePress1',
+  // description: 'Just playing around',
+
+  /** seo */
+  title: 'vuepress 25',
+  description: 'if the girl can influence your emotion， you should delete she',
+  head: [
+    ['link', { rel: 'icon', href: '/hero.png' }],
+    [
+      'meta',
+      {
+        name: 'author',
+        content: '优雅的主页,bookbook,BookBook,bookbook.cc,.cc',
+      },
+    ],
+    ['meta', { name: 'Keywords', content: 'java javascript python purl' }],
+  ],
   // locales: {
   //   // 键名是该语言所属的子路径
   //   // 作为特例，默认语言可以使用 '/' 作为其路径。
@@ -31,7 +47,7 @@ module.exports = {
         ],
       },
     ],
-    //the following bars only currenct use
+    //only one of the following bars can be valid
     // sidebar: [
     //   ['/about/', '關于我'],
     //   ['https://google.com', 'google link'],
@@ -68,5 +84,27 @@ module.exports = {
     },
     // 加下面這句，上面對象方式不生效
     // sidebar: 'auto',
+
+    //git commit time
+    // lastUpdated: 'Last Updated', // string | boolean
+    lastUpdated: true, // string | boolean
   },
+
+  plugins: [
+    [
+      '@vuepress/last-updated',
+      {
+        transformer: (timestamp, lang) => {
+          // 不要忘了安装 moment
+          const moment = require('moment');
+          // moment.locale(lang);
+          //中文
+          moment.locale('zh-cn');
+          //fromNow相對時間
+          // return moment(timestamp).fromNow();
+          return moment(timestamp).format('LLLL');
+        },
+      },
+    ],
+  ],
 };
