@@ -207,8 +207,19 @@ module.exports = {
       },
     },
     '@vuepress/google-analytics': {
-      ga: 'G-C7VG0Q1QCK', // UA-00000000-0
+      ga: 'UA-274781547-1',
     },
     '@vuepress/back-to-top': true,
+    '@vssue/vuepress-plugin-vssue': {
+      // 设置 `platform` 而不是 `api`
+      platform: 'github-v4',
+
+      // 其他的 Vssue 配置
+      owner: 'lmy668',
+      repo: 'vuepress',
+      clientId: 'aa8f6d061a72ae2f082b',
+      clientSecret: 'f5cda3db655fe9003948649589ffd1a7b3dde912',
+      autoCreateIssue: true,
+    },
   },
 };
