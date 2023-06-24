@@ -16,3 +16,9 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
 
 # Hello VuePress1
+
+## 演示 pwa
+
+观察浏览器的 application 的 manifest、service worker
+
+#### 演示 pwa 中 sw 的 issue、install 過程

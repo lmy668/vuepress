@@ -12,6 +12,9 @@
   "author": "李xx",
   "license": "ISC",
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.9.9",
+    "@vuepress/plugin-google-analytics": "^1.9.9",
+    "@vuepress/plugin-pwa": "^1.9.9",
     "vuepress": "^1.9.9"
   },
   "dependencies": {

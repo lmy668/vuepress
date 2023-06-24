@@ -22,15 +22,43 @@ module.exports = {
       },
     ],
     ['meta', { name: 'Keywords', content: 'java javascript python purl' }],
+    // pwa
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    [
+      'meta',
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
+    ],
+    [
+      'link',
+      { rel: 'apple-touch-icon', href: 'images/icons/icon-152x152.png' },
+    ],
+    [
+      'link',
+      {
+        rel: 'mask-icon',
+        href: 'images/icons/safari-pinned-tab.svg',
+        color: '#3eaf7c',
+      },
+    ],
+    [
+      'meta',
+      {
+        name: 'msapplication-TileImage',
+        content: 'images/icons/icon-144x144.png',
+      },
+    ],
+    ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
   ],
   // locales: {
   //   // 键名是该语言所属的子路径
   //   // 作为特例，默认语言可以使用 '/' 作为其路径。
-  //   "/": {
-  //     lang: "en-US", // 将会被设置为 <html> 的 lang 属性
-  //     title: "VuePressen-US",
-  //     description: "Vue-powered Static Site Generator",
-  //   },
+  '/': {
+    lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
+    title: 'VuePressen-US',
+    description: 'Vue-powered Static Site Generator',
+  },
   //   "/zh/": {
   //     lang: "zh-CN",
   //     title: "VuePresszh-CN",
@@ -52,6 +80,7 @@ module.exports = {
           { text: 'Japanese', link: '/language/japanese/' },
         ],
       },
+      { text: '劝学', link: '/quanxue/' },
     ],
     //only one of the following bars can be valid
     // sidebar: [
@@ -115,21 +144,71 @@ module.exports = {
     editLinkText: '帮助我们改善此页面！',
   },
 
-  plugins: [
-    [
-      '@vuepress/last-updated',
-      {
-        transformer: (timestamp, lang) => {
-          // 不要忘了安装 moment
-          const moment = require('moment');
-          // moment.locale(lang);
-          //中文
-          moment.locale('zh-cn');
-          //fromNow相對時間
-          // return moment(timestamp).fromNow();
-          return moment(timestamp).format('LLLL');
-        },
+  plugins: {
+    //babel式
+    // [
+    //   '@vuepress/last-updated',
+    //   {
+    //     transformer: (timestamp, lang) => {
+    //       // 不要忘了安装 moment
+    //       const moment = require('moment');
+    //       // moment.locale(lang);
+    //       //中文
+    //       moment.locale('zh-cn');
+    //       //fromNow相對時間
+    //       // return moment(timestamp).fromNow();
+    //       return moment(timestamp).format('LLLL');
+    //     },
+    //   },
+    // ],
+    // [
+    //   '@vuepress/pwa',
+    //   {
+    //     serviceWorker: true,
+    //     updatePopup: {
+    //       // message: '发现新内容可用',
+    //       // buttonText: '刷新',
+    //       '/': {
+    //         message: 'New content is available.',
+    //         buttonText: 'Refresh',
+    //       },
+    //       // '/zh/': {
+    //       //   message: '发现新内容可用',
+    //       //   buttonText: '刷新',
+    //       // },
+    //     },
+    //   },
+    // ],
+    '@vuepress/last-updated': {
+      transformer: (timestamp, lang) => {
+        // 不要忘了安装 moment
+        const moment = require('moment');
+        // moment.locale(lang);
+        //中文
+        moment.locale('zh-cn');
+        //fromNow相對時間
+        // return moment(timestamp).fromNow();
+        return moment(timestamp).format('LLLL');
       },
-    ],
-  ],
+    },
+    '@vuepress/pwa': {
+      serviceWorker: true,
+      updatePopup: {
+        // message: '发现新内容可用',
+        // buttonText: '刷新',
+        '/': {
+          message: 'New content is available.',
+          buttonText: 'Refresh',
+        },
+        // '/zh/': {
+        //   message: '发现新内容可用',
+        //   buttonText: '刷新',
+        // },
+      },
+    },
+    '@vuepress/google-analytics': {
+      ga: 'G-C7VG0Q1QCK', // UA-00000000-0
+    },
+    '@vuepress/back-to-top': true,
+  },
 };
