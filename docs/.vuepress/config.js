@@ -1,4 +1,8 @@
-const moment = require('moment');
+const headConf = require('./config/headConf.js');
+const navConf = require('./config/navConf.js');
+const sidebarConf = require('./config/sidebarConf.js');
+const pluginsConf = require('./config/pluginConf.js');
+
 module.exports = {
   /**
    * 如果你打算发布到 https://<USERNAME>.github.io/，则可以省略这一步，因为 base 默认即是 "/"。
@@ -12,45 +16,7 @@ module.exports = {
   /** seo */
   title: 'vuepress 256',
   description: 'if the girl can influence your emotion， you should delete she',
-  head: [
-    ['link', { rel: 'icon', href: '/hero.png' }],
-    [
-      'meta',
-      {
-        name: 'author',
-        content: '优雅的主页,bookbook,BookBook,bookbook.cc,.cc',
-      },
-    ],
-    ['meta', { name: 'Keywords', content: 'java javascript python purl' }],
-    // pwa
-    ['link', { rel: 'manifest', href: '/manifest.json' }],
-    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
-    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    [
-      'meta',
-      { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
-    ],
-    [
-      'link',
-      { rel: 'apple-touch-icon', href: 'images/icons/icon-152x152.png' },
-    ],
-    [
-      'link',
-      {
-        rel: 'mask-icon',
-        href: 'images/icons/safari-pinned-tab.svg',
-        color: '#3eaf7c',
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'msapplication-TileImage',
-        content: 'images/icons/icon-144x144.png',
-      },
-    ],
-    ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
-  ],
+  head: headConf,
   // locales: {
   //   // 键名是该语言所属的子路径
   //   // 作为特例，默认语言可以使用 '/' 作为其路径。
@@ -67,56 +33,8 @@ module.exports = {
   // },
   themeConfig: {
     logo: '/assets/img/logo.png',
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'about', link: '/about1' },
-      { text: 'Guide', link: '/about/' },
-      { text: 'External', link: 'https://google.com', target: '_blank' },
-      {
-        text: 'Language',
-        ariaLabel: 'Language Menu',
-        items: [
-          { text: 'Chinese', link: '/language/chinese/' },
-          { text: 'Japanese', link: '/language/japanese/' },
-        ],
-      },
-      { text: '劝学', link: '/quanxue/' },
-    ],
-    //only one of the following bars can be valid
-    // sidebar: [
-    //   ['/about/', '關于我'],
-    //   ['https://google.com', 'google link'],
-    //   {
-    //     title: '美麗的css', // 必要的
-    //     path: '/css/', // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-    //     collapsable: false, // 可选的, 默认值是 true,
-    //     sidebarDepth: 1, // 可选的, 默认值是 1
-    //     children: ['/css/css-a', '/css/css-b', '/css/css-c'],
-    //   },
-    //   'about1',
-    //   '/',
-    // ],
-
-    sidebar: {
-      '/foo/': [
-        '/' /* 返回根目錄 */,
-        '' /* /foo/ */,
-        'one' /* /foo/one.html */,
-        'two' /* /foo/two.html */,
-      ],
-      '/bar/': [
-        '' /* /bar/ */,
-        'three' /* /bar/three.html */,
-        'four' /* /bar/four.html */,
-      ],
-
-      // fallback 确保 fallback 侧边栏被最后定义。VuePress 会按顺序遍历侧边栏配置来寻找匹配的配置
-      '/': [
-        '' /* / */,
-        'contact' /* /contact.html */,
-        'about1' /* /about1.html */,
-      ],
-    },
+    nav: navConf,
+    sidebar: sidebarConf,
     // 加下面這句，上面對象方式不生效
     // sidebar: 'auto',
 
@@ -144,82 +62,5 @@ module.exports = {
     editLinkText: '帮助我们改善此页面！',
   },
 
-  plugins: {
-    //babel式
-    // [
-    //   '@vuepress/last-updated',
-    //   {
-    //     transformer: (timestamp, lang) => {
-    //       // 不要忘了安装 moment
-    //       const moment = require('moment');
-    //       // moment.locale(lang);
-    //       //中文
-    //       moment.locale('zh-cn');
-    //       //fromNow相對時間
-    //       // return moment(timestamp).fromNow();
-    //       return moment(timestamp).format('LLLL');
-    //     },
-    //   },
-    // ],
-    // [
-    //   '@vuepress/pwa',
-    //   {
-    //     serviceWorker: true,
-    //     updatePopup: {
-    //       // message: '发现新内容可用',
-    //       // buttonText: '刷新',
-    //       '/': {
-    //         message: 'New content is available.',
-    //         buttonText: 'Refresh',
-    //       },
-    //       // '/zh/': {
-    //       //   message: '发现新内容可用',
-    //       //   buttonText: '刷新',
-    //       // },
-    //     },
-    //   },
-    // ],
-    '@vuepress/last-updated': {
-      transformer: (timestamp, lang) => {
-        // 不要忘了安装 moment
-        const moment = require('moment');
-        // moment.locale(lang);
-        //中文
-        moment.locale('zh-cn');
-        //fromNow相對時間
-        // return moment(timestamp).fromNow();
-        return moment(timestamp).format('LLLL');
-      },
-    },
-    '@vuepress/pwa': {
-      serviceWorker: true,
-      updatePopup: {
-        // message: '发现新内容可用',
-        // buttonText: '刷新',
-        '/': {
-          message: 'New content is available.',
-          buttonText: 'Refresh',
-        },
-        // '/zh/': {
-        //   message: '发现新内容可用',
-        //   buttonText: '刷新',
-        // },
-      },
-    },
-    '@vuepress/google-analytics': {
-      ga: 'UA-274781547-1',
-    },
-    '@vuepress/back-to-top': true,
-    '@vssue/vuepress-plugin-vssue': {
-      // 设置 `platform` 而不是 `api`
-      platform: 'github-v4',
-
-      // 其他的 Vssue 配置
-      owner: 'lmy668',
-      repo: 'vuepress',
-      clientId: 'aa8f6d061a72ae2f082b',
-      clientSecret: 'f5cda3db655fe9003948649589ffd1a7b3dde912',
-      autoCreateIssue: true,
-    },
-  },
+  plugins: pluginsConf,
 };
