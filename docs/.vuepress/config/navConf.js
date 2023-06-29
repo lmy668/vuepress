@@ -2,6 +2,7 @@ module.exports = [
   { text: 'Home', link: '/' },
   { text: 'about', link: '/about1' },
   { text: 'Guide', link: '/about/' },
+  { text: 'md中第三方组件', link: '/countup/' },
   { text: 'External', link: 'https://google.com', target: '_blank' },
   {
     text: 'Language',
