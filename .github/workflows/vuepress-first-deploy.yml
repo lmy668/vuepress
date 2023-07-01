@@ -18,18 +18,17 @@ jobs:
         # 官方社区贡献的用来拉取仓库分支的 Action
         uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ variables.nodeversion }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ variables.nodeversion }}
 
       - name: The project starts to build
         run: |
-          echo "vuepress Build and Deploy"echo "
+          echo "vuepress Build and Deploy"
           echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
           npm ci
           npm run docs:build
-
   deploy:
     runs-on: ubuntu-latest
     steps:
