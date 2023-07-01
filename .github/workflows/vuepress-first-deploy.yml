@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         # 官方社区贡献的用来拉取仓库分支的 Action
         uses: actions/checkout@v2
-
+        # 仓库传入的变量
       - name: Use Node.js ${{ vars.NODEVERSION }}
         uses: actions/setup-node@v2
         with:
@@ -36,7 +36,8 @@ jobs:
       - name: push and deploy [gh-pages]
         run: |
           echo Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
-          cd docs/.vuepress/dist
+          pwd
+          ls -lrt
           git init
           git add -A
           git commit -m 'deploy'

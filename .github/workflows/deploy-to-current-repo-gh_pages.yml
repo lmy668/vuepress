@@ -10,9 +10,9 @@ jobs:
       - name: Build and Deploy
         uses: jenkey2011/vuepress-deploy@v1.8.1
         env:
-          ACCESS_TOKEN: ${ secrets.ACCESS_TOKEN }
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TARGET_REPO: limy668/vuepress
           TARGET_BRANCH: gh_pages
           BUILD_SCRIPT: npm ci && npm run docs:build
           BUILD_DIR: docs/.vuepress/dist
-          TARGET_LINK: https://username:${ secrets.ACCESS_TOKEN }@github.com/lmy668/vuepress.git
+          # TARGET_LINK: https://username:${{ secrets.ACCESS_TOKEN }}@github.com/lmy668/vuepress.git
