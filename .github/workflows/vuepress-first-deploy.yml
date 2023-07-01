@@ -16,7 +16,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: vuepress Build and Deploy
-#         uses: lmy668/vuepress@main
+        # uses: lmy668/vuepress@main
+        run: echo "vuepress Build and Deploy"
         env:
           ACCESS_TOKEN: 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
           TARGET_REPO: lmy668/vuepress
