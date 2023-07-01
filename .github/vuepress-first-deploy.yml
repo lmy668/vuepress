@@ -1,0 +1,17 @@
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: vuepress Build and Deploy
+        uses: lmy668/vuepress@main
+        env:
+          ACCESS_TOKEN: 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
+          TARGET_REPO: lmy668/vuepress
+          TARGET_BRANCH: gh_pages
+          BUILD_SCRIPT: npm && npm build
+          BUILD_DIR: dist/

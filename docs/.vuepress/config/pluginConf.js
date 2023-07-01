@@ -73,7 +73,21 @@ module.exports = {
     owner: 'lmy668',
     repo: 'vuepress',
     clientId: 'aa8f6d061a72ae2f082b',
+    //github OAuth Apps
     clientSecret: 'f5cda3db655fe9003948649589ffd1a7b3dde912',
     autoCreateIssue: true,
+  },
+  '@vuepress/medium-zoom': {
+    selector: 'img.zoom',
+    // medium-zoom options here
+    // See: https://github.com/francoischalifour/medium-zoom#options
+    options: {
+      margin: 0,
+      background: '#BADA55',
+      //图片放大后允许上下滚动的偏移量，超过偏移量会自动退出
+      scrollOffset: 10000,
+      // container: '#zoom-container',
+      // template: '#zoom-template',
+    },
   },
 };
