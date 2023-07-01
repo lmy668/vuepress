@@ -31,6 +31,7 @@ jobs:
           npm run docs:build
 
   deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: push and deploy [gh-pages]
         run: |
