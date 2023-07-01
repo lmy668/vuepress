@@ -11,7 +11,7 @@ jobs:
         uses: jenkey2011/vuepress-deploy@v1.8.1
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TARGET_REPO: limy668/vuepress
+          TARGET_REPO: lmy668/vuepress
           TARGET_BRANCH: gh_pages
           BUILD_SCRIPT: npm ci && npm run docs:build
           BUILD_DIR: docs/.vuepress/dist
