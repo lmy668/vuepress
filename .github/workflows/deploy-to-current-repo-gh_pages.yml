@@ -14,4 +14,4 @@ jobs:
           TARGET_REPO: limy668/vuepress
           TARGET_BRANCH: gh_pages
           BUILD_SCRIPT: npm ci && npm run docs:build
-          BUILD_DIR: build/dist/
+          BUILD_DIR: docs/.vuepress/dist
