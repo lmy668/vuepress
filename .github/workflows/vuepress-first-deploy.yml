@@ -8,19 +8,35 @@ on:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x, 18.x]
     steps:
       - name: Checkout
         # 官方社区贡献的用来拉取仓库分支的 Action
         uses: actions/checkout@v2
 
-      - name: vuepress Build and Deploy
-        # uses: lmy668/vuepress@main
-        run: echo "vuepress Build and Deploy"
-        env:
-          ACCESS_TOKEN: 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
-          TARGET_REPO: lmy668/vuepress
-          TARGET_BRANCH: gh_pages
-          BUILD_SCRIPT: npm && npm build
-          BUILD_DIR: dist/
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: The project starts to build
+        run: |
+          echo "vuepress Build and Deploy"echo "
+          echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+          npm ci
+          npm run docs:build
+
+  deploy:
+    steps:
+      - name: push and deploy [gh-pages]
+        run: |
+          echo Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+          cd docs/.vuepress/dist
+          git init
+          git add -A
+          git commit -m 'deploy'
+          git push -f https://github.com/lmy668/vuepress.git master:gh-pages
