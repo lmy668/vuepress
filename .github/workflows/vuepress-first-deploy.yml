@@ -1,12 +1,17 @@
 name: Build and Deploy
-on: [push]
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  push:
+    branches: -main
+  pull_request:
+    branches: -main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        # 下载官方actions的checkout
-        uses: actions/checkout@master
+        # 官方社区贡献的用来拉取仓库分支的 Action
+        uses: actions/checkout@v2
 
       - name: vuepress Build and Deploy
         uses: lmy668/vuepress@main
