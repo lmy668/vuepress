@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        # 下载官方actions的checkout
+        uses: actions/checkout@master
 
       - name: vuepress Build and Deploy
         uses: lmy668/vuepress@main
