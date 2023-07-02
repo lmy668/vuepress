@@ -29,14 +29,17 @@ jobs:
           echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
           npm ci
           npm run docs:build
-          echo the file path  & pwd & ls -lrt
+          echo the file path & pwd & ls -lrt
 
       - name: Push the artifact to github
         run: |
           echo by @${{ github.actor }}
+          cd docs/.vuepress/dist
           git init
+          git config user.email "${{ github.email }}"
+          git config user.name "${{ github.actor }}"
           git add -A
-          git commit -m 'deploy'
+          git commit -m 'push and wait deploy'
           git push -f https://github.com/lmy668/vuepress.git master:gh-pages
   # deploy:
   #   needs: build
