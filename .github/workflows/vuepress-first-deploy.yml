@@ -1,5 +1,5 @@
-name: Build and Deploy
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: My Build-Push
+run-name: only Build-Push is learning GitHub Actions
 on:
   push:
     branches:
@@ -29,16 +29,19 @@ jobs:
           echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
           npm ci
           npm run docs:build
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: push and deploy [gh-pages]
+          echo the file path  & pwd & ls -lrt
+
+      - name: Push the artifact to github
         run: |
-          echo Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
-          pwd
-          ls -lrt
+          echo by @${{ github.actor }}
           git init
           git add -A
           git commit -m 'deploy'
           git push -f https://github.com/lmy668/vuepress.git master:gh-pages
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: push and deploy [gh-pages]
+  #       run: |
+  #         echo Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
