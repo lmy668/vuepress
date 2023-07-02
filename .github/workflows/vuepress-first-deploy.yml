@@ -40,7 +40,9 @@ jobs:
           git config user.name "${{ github.actor }}"
           git add -A
           git commit -m 'push and wait deploy'
-          git push -f https://github.com/lmy668/vuepress.git master:gh-pages
+          git push -f https://username:${{ secrets.ACCESS_TOKEN }}@github.com/${{ github.repository }}.git master:gh-pages
+          rm -fr .git
+          cd $GITHUB_WORKSPACE & pwd
   # deploy:
   #   needs: build
   #   runs-on: ubuntu-latest
